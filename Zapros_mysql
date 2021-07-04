@@ -1,0 +1,132 @@
+Задание 1:
+1. Вывести всех, что живет в Лондоне
+SELECT * FROM [Customers]
+WHERE City = "London";
+
+2. Выбрать имена контактов и имена заказчиков, где адрес заканчивается на 23
+SELECT CustomerID, CustomerName,Address FROM Customers
+WHERE Address LIKE "%23";
+
+3. Выбрать уникальные города.
+SELECT distinct City
+FROM  Customers;
+
+4. Выбрать тех пользователей, у кого код начинается с 0 (нуль)
+SELECT  CustomerID , CustomerName , PostalCode FROM Customers
+WHERE PostalCode LIKE '0%';
+
+5. Вывести клиентов не из США
+SELECT * FROM Customers
+WHERE Country <> "USA" ;
+
+6.Вывести всех, кто из Франции и отсортировать по убыванию по имени контакта
+SELECT * FROM Customers
+WHERE Country = "France" 
+ORDER BY CustomerID DESC;
+
+7. Вывести клиентов из Германии и США, ограничить выбор 10 записями
+SELECT * FROM Customers
+WHERE Country = "France" OR Country = "USA"
+LIMIT 10;
+
+Задание 2 
+
+1. Выбрать все продукты, начинающиеся на букву «М»
+SELECT * FROM Products
+WHERE ProductName lIKE "M%";
+
+2. Вывести характеристику упаковки (unit) для товара Steeleye Stout
+SELECT 	ProductName, Unit FROM Products
+WHERE ProductName = 'Steeleye Stout';
+
+3. Вывести названия товаров, цена которых выше 22
+SELECT ProductID, ProductName, Price  FROM Products
+WHERE Price > 22;
+
+4!. Вывести товары, в которых вес упаковки составляет 250 g
+SELECT * FROM Products
+WHERE 	Unit LIKE '%250 g%';
+5. Вывести товары, упаковка которых состоит из «bottles»
+SELECT * FROM Products
+WHERE 	Unit LIKE '%bottles';
+
+6. Вывести товары, где SupplierID составляет 7 и отсортировать результаты по убыванию по цене
+SELECT * FROM Products
+WHERE SupplierID = 7
+ORDER BY ProductID DESC;
+
+Задание 3 !
+На веб-странице существует кнопка «Быстрый поиск», которая выделяет из таблицы character в базе данных всех персонажей выше 45 уровня (столбец level), расы dwarf (столбец race) и выводит результат на страницу. Укажите, как будет выглядеть в данном случае SQL-запрос.
+
+SELECT level, race FROM character
+where level > 45; 
+
+
+Задание 4
+Нажать кнопку Try it yourself,  далее в новом окне нажать на кнопку  Run SQL
+Запросы для таблицы Employees:
+
+1. Вывести имя, фамилию и записи о сотруднике
+SELECT FirstName, LastName, Notes  FROM Employees;
+
+2!. Вывести информацию по работникам старше 1960 года
+select * from Employees where year(BirthDate) >= 1960;
+
+3. Вывести  дату рождения сотрудников, чьи имена начинаются на букву «А
+SELECT FirstName, BirthDate FROM Employees
+WHERE FirstName like "A%";
+ 
+4. Вывести имя, фамилию и дату рождения сотрудников, отсортировав по дате рождения по возрастанию
+select FirstName, lastName, BirthDate from Employees
+ORDER BY BirthDate;
+
+Задание 5
+Зайти на главную страницу SQL fiddle и создать свою таблицу. Использовать команды Create, Insert into, Update, Delete
+Стообцы
+Name, Surname, Age, Login, Password, E-mail
+Значения
+1.Создание таблицы users
+CREATE TABLE Users (
+    Name VARCHAR(20),
+    Surname varchar(20),
+    Age INT(3),
+    Login VARCHAR(20),
+    Password VARCHAR(20),
+    Email VARCHAR(35)
+);
+2.Вставить значения
+INSERT INTO `users`(`Name`, `Surname`, `Age`, `Login`, `Password`, `Email`) VALUES 
+('Nick', 'Brown', '32', 'LogNick', '12pass', 'nick@gmail.com'), 
+('Mike', 'Tobler', '26', 'SunF', '12qwerty', 'sunF@mail.ru'), 
+('Kate', 'Brown', '28', 'Katitty', '4test*12', 'KateBrown@mail.ru'), 
+('Nick', 'Bonner', '21', 'FlQSt', '12qweq', 'BonNick@yandex.ru'), 
+('Tom', 'Boyer', '40', 'preSTOM', '4test*12', 'preSTOM@tut.by'), 
+('Alex', 'Lord', '26', 'nutt7', '2floppynut', 'lord@gmail.com');
+3.Обновить запись, где возраст 21
+UPDATE `users` SET `Name`='Alinaa',`Surname`='Kaleeva' WHERE Age='21';
+4.Удалить все записи из талицы
+DELETE FROM `users`; 
+
+1. Вывести имена и емейл людей старше 30 лет.
+SELECT Name, Email FROM users WHERE Age>30; 
+2. Вывести логин и пароль пользователей , фамилия которых начинается на «В»
+SELECT Surname,Login,Password FROM users WHERE Surname Like 'B%' 
+3. Вывести пароли, которые заканчиваются на “12”
+SELECT Surname,Login,Password FROM users WHERE Password Like '%12' 
+4. Вывести все записи, где email содержит nick
+SELECT Surmame,Login,Email FROM users WHERE Email Like '%nick%' 
+5. Вывести уникальный возраст
+SELECT DISTINCT Age FROM users; 
+6. Вывести поля имя, логин, пароль, e-mail и отсортировать по убыванию по Name
+SELECT Name,Login,Password,Email FROM users order by Name DESC; 
+7. Вывести всю информацию о Nick Bonner
+SELECT * FROM users WHERE Name='Nick' and `Surname`='Bonner'; 
+
+
+
+
+
+
+
+
+
